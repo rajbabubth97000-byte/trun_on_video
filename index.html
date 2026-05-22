@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb On And Off</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(121, 121, 108);
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-content: center;
+        }
+        div{
+            width: 400px;
+            text-align: center;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        /* Image Aur Video ke lia  */
+        img, video{
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!--Image ko Lagaya gaya -->
+        <img src="download.jpg" alt="Bulb" id="bulb">
+        
+        <!-- Video lagaya gaya  -->
+        <video id="myVideo" src="WhatsApp Video 2026-05-22 at 10.57.34 AM.mp4" style="display: none;" loop></video>
+        
+        <br>
+        <!-- बटन की चौड़ाई (width: 95%) बढ़ा दी है और फॉन्ट (font-size: 28px) को फिट कर दिया है -->
+        <button onclick="change()" id="btn" style="width: 95%; height: 55px; font-size: 28px; margin-top: 15px; border-radius: 20px; background-color: red; color: white; border: none; cursor: pointer; font-weight: bold; white-space: nowrap;">PLAY AND ENJOY</button>
+    </div>
+
+    <script>
+        let bulb = document.getElementById('bulb');
+        let myVideo = document.getElementById('myVideo');
+        let btn = document.getElementById('btn');
+        let light = false;
+
+        function change () {
+            if(light == false) {
+                // pic hata ke video open 
+                bulb.style.display = "none";
+                myVideo.style.display = "block";
+                
+                // Video play 
+                myVideo.play().catch(error => {
+                    console.log("Browser blocked auto-play. Make sure to click the button.");
+                });
+
+                light = true;
+                btn.innerHTML = "STOP";
+            }
+            else {
+                // Video Ko Roke Aur Phir Se Chalya jayga 
+                myVideo.pause();
+                myVideo.currentTime = 0;
+
+                // Video hata ke Image Ko dikhaya jaya
+                myVideo.style.display = "none";
+                bulb.style.display = "block";
+
+                light = false;
+                btn.innerHTML = "PLAY AND ENJOY";
+            }
+        }
+    </script>
+</body>
+</html>
